@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="sidebar">
+        <h2>Fitness Tracker</h2>
+        <ul id="exercise-list"></ul>
+        <input type="text" id="workout-date" placeholder="Date (YYYY-MM-DD)">
+        <input type="number" id="workout-duration" placeholder="Duration (minutes)">
+        <input type="number" id="calories-burned" placeholder="Calories Burned">
+        <textarea id="workout-notes" placeholder="Notes"></textarea>
+        <button id="add-workout">Add Workout</button>
+        <button id="delete-workout">Delete Workout</button>
+    </div>
+    <div id="main">
+        <h1>Workout Log</h1>
+        <ul id="workout-list"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
