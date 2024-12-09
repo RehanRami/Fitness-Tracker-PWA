@@ -15,7 +15,7 @@ function renderWorkouts() {
             workoutList.innerHTML = '';
             workouts.forEach(workout => {
                 const li = document.createElement('li');
-                li.textContent = `${workout.date}: ${workout.duration} minutes, ${workout.calories_burned} kcal burned - ${workout.notes}`;
+                li.textContent = `${workout.date}: ${workout.duration} minutes, ${workout.calories_burned} kcal burned - ${workout.notes} id - ${workout.id}`;
                 workoutList.appendChild(li);
             });
         })
@@ -42,6 +42,7 @@ addWorkoutBtn.addEventListener('click', () => {
         workoutDuration.value = '';
         caloriesBurned.value = '';
         workoutNotes.value = '';
+    
     })
     .catch(err => console.error('Error adding workout:', err));
 });
