@@ -7,6 +7,11 @@ const addWorkoutBtn = document.getElementById('add-workout');
 const deleteWorkoutBtn = document.getElementById('delete-workout');
 const workoutList = document.getElementById('workout-list');
 
+const filterInput = document.getElementById('filter-input');
+const filterButton = document.getElementById('filter-button');
+const refreshButton = document.getElementById('refresh');
+
+
 // Function to fetch workouts and render them on the page
 function renderWorkouts() {
     fetch('/api/workouts')
@@ -63,3 +68,43 @@ deleteWorkoutBtn.addEventListener('click', () => {
 window.onload = () => {
     renderWorkouts();
 };
+
+
+
+// filter
+
+function renderFilterWorkouts(workouts) {
+    workoutList.innerHTML = '';
+    workouts.forEach((workout) => {
+        const li = document.createElement('li');
+        li.textContent = `ID: ${workout.id}, Date: ${workout.date}, Duration: ${workout.duration} mins, 
+                          Calories: ${workout.calories_burned}, Notes: ${workout.notes}`;
+        workoutList.appendChild(li);
+    });
+}
+
+function filterWorkouts() {
+    const filterValue = filterInput.value.trim().toLowerCase();
+
+    if (filterValue) {
+        fetch('/api/workouts')
+            .then((response) => response.json())
+            .then((workouts) => {
+                const filtered = workouts.filter((workout) =>
+                    workout.id.toString() === filterValue ||
+                    workout.date.includes(filterValue) ||
+                    workout.duration.toString() === filterValue ||
+                    workout.calories_burned.toString() === filterValue
+                );
+
+                renderFilterWorkouts(filtered);
+
+                // // Hide input box and filter button after filtering
+                // filterInput.style.display = 'none';
+                // filterButton.style.display = 'none';
+            });
+    }
+}
+
+filterButton.addEventListener('click', filterWorkouts());
+refreshButton.addEventListener('click', location.reload);
