@@ -5,8 +5,8 @@ const STATIC_ASSETS = [
     '/style.css',
     '/app.js',
     '/manifest.json',
-    '/images/logo-192.png',
-    '/images/logo-512.png',
+    '/images/192logo.png',
+    '/images/512logo.png',
 ];
 
 // Install event: Cache static assets

@@ -80,6 +80,35 @@ app.delete('/api/workouts/:id', (req, res) => {
     });
 });
 
+
+// Update a workout by ID
+app.put('/api/workouts/:id', (req, res) => {
+    const { id } = req.params;
+    const { date, duration, calories_burned, notes } = req.body;
+
+    const query = `
+        UPDATE workouts 
+        SET date = ?, duration = ?, calories_burned = ?, notes = ?
+        WHERE id = ?
+    `;
+
+    db.run(query, [date, duration, calories_burned, notes, id], function (err) {
+        if (err) {
+            console.error('Error updating workout:', err.message);
+            return res.status(500).json({ error: err.message });
+        }
+        if (this.changes === 0) {
+            return res.status(404).json({ message: 'Workout not found' });
+        }
+        res.json({ message: 'Workout updated successfully' });
+    });
+});
+
+
+
+
+
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
