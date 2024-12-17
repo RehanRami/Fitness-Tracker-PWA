@@ -14,7 +14,7 @@ const refreshButton = document.getElementById('refresh');
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker
-            .register('/service-worker.js')
+            .register('serviceworker.js')
             .then((registration) => {
                 console.log('Service Worker registered with scope:', registration.scope);
             })
@@ -126,57 +126,7 @@ refreshButton.addEventListener('click', () =>  location.reload());
 
 
 
-
-// Function to edit a workout
-// function editWorkout() {
-//     const workoutId = prompt('Enter the ID of the workout you want to edit:');
-
-//     if (workoutId) {
-//         fetch(`/api/workouts/${workoutId}`, {
-//             method: 'GET',
-//         })
-//             .then((response) => {
-//                 if (!response.ok) {
-//                     response.text().then(console.log);
-//                     throw new Error('Workout not found');
-//                 }
-//                 return response.json();
-//             })
-//             .then((workout) => {
-//                 // Prompt user for new details (pre-filled with existing values)
-//                 const newDate = prompt('Enter new date (YYYY-MM-DD):', workout.date);
-//                 const newDuration = prompt('Enter new duration (minutes):', workout.duration);
-//                 const newCalories = prompt('Enter new calories burned:', workout.calories_burned);
-//                 const newNotes = prompt('Enter new notes:', workout.notes);
-
-//                 // Update the workout
-//                 const updatedWorkout = {
-//                     date: newDate || workout.date,
-//                     duration: parseInt(newDuration) || workout.duration,
-//                     calories_burned: parseInt(newCalories) || workout.calories_burned,
-//                     notes: newNotes || workout.notes,
-//                 };
-
-//                 fetch(`/api/workouts/${workoutId}`, {
-//                     method: 'PUT',
-//                     headers: { 'Content-Type': 'application/json' },
-//                     body: JSON.stringify(updatedWorkout),
-//                 })
-//                 .then((response) => {
-//                     if (!response.ok) {
-//                         throw new Error('Failed to update workout');
-//                     }
-//                     alert('Workout updated successfully!');
-//                     renderWorkouts(); // Refresh the list
-//                 })
-//                 .catch((err) => console.error('Error updating workout:', err));
-//             })
-//             .catch((err) => {
-//                 alert('Error: Workout not found');
-//                 console.error(err);
-//             });
-//     }
-// }
+//edit workout
 
 
 
