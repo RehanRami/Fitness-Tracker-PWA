@@ -11,6 +11,21 @@ const filterInput = document.getElementById('filter-input');
 const filterButton = document.getElementById('filter-button');
 const refreshButton = document.getElementById('refresh');
 
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/service-worker.js')
+            .then((registration) => {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+                console.error('Service Worker registration failed:', error);
+            });
+    });
+}
+
+
+
 
 // Function to fetch workouts and render them on the page
 function renderWorkouts() {
@@ -106,5 +121,6 @@ function filterWorkouts() {
     }
 }
 
-filterButton.addEventListener('click', filterWorkouts());
-refreshButton.addEventListener('click', location.reload);
+filterButton.addEventListener('click', filterWorkouts);
+refreshButton.addEventListener('click', () =>  location.reload());
+
